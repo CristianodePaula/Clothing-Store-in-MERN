@@ -1,16 +1,14 @@
-const router = require("express").Router();
-const stripe = require("stripe")(process.env.STRIPE_KEY);
-//const KEY = process.env.STRIPE_KEY
-//const stripe = require("stripe")(KEY);
+const router = require("express").Router()
+const stripe = require("stripe")(process.env.STRIPE_KEY)
 
 router.post("/payment", (req, res) => {
   stripe.charges.create(
     {
-      source: req.body.tokenId, // cria token de pagamento
+      source: req.body.tokenId,
       amount: req.body.amount,
-      currency: "usd", // moeda
+      currency: "usd", 
     },
-    (stripeErr, stripeRes) => {   // retorno de sucesso ou erro no striper
+    (stripeErr, stripeRes) => { 
       if (stripeErr) {
         res.status(500).json(stripeErr)
       } else {

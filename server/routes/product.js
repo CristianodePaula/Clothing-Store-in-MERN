@@ -3,7 +3,6 @@ const { verifyTokenAndAdmin } = require("./verifyToken")
 
 const router = require("express").Router()
 
-//CREATE
 router.post("/", verifyTokenAndAdmin, async (req, res) => {
   const newProduct = new Product(req.body)
 
@@ -15,7 +14,6 @@ router.post("/", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
-//UPDATE
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
@@ -31,17 +29,15 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
-//DELETE
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     await Product.findByIdAndDelete(req.params.id)
     res.status(200).json("Produto deletado...")
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err)
   }
 })
 
-//GET PRODUCT
 router.get("/find/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
@@ -51,12 +47,11 @@ router.get("/find/:id", async (req, res) => {
   }
 })
 
-//GET ALL PRODUCTS
 router.get("/", async (req, res) => {
   const qNew = req.query.new
   const qCategory = req.query.category
   try {
-    let products // variável de produtos
+    let products
 
     if (qNew) {
       products = await Product.find().sort({ createdAt: -1 }).limit(1);

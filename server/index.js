@@ -28,7 +28,7 @@ app.use("/api/users", userRoute)
 app.use("/api/products", productRoute)
 app.use("/api/carts", cartRoute)
 app.use("/api/orders", orderRoute)
-app.use("/api/contact", contactRoute);
+app.use("/api/contacts", contactRoute)
 
 app.listen(process.env.PORT, ()=> {
     console.log("Servidor rodando na porta espeficiada")

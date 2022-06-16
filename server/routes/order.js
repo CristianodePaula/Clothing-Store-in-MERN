@@ -3,7 +3,6 @@ const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = requir
 
 const router = require("express").Router()
 
-//CREATE
 router.post("/", verifyToken, async (req, res) => {
   const newOrder = new Order(req.body)
 
@@ -13,9 +12,8 @@ router.post("/", verifyToken, async (req, res) => {
   } catch (err) {
     res.status(500).json(err)
   }
-});
+})
 
-//UPDATE
 router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(
@@ -31,7 +29,6 @@ router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
-//DELETE
 router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     await Order.findByIdAndDelete(req.params.id)
@@ -41,7 +38,6 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
-//GET USER ORDERS
 router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.userId })
@@ -51,7 +47,6 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   }
 })
 
-// //GET ALL
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   try {
     const orders = await Order.find()
@@ -61,20 +56,19 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
-// GET MONTHLY INCOME
 router.get("/income", verifyTokenAndAdmin, async (req, res) => {
   const productId = req.query.pid
   const date = new Date()
-  const lastMonth = new Date(date.setMonth(date.getMonth() - 1)) // constante para ultimo mes
-  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1)) // constante para mês anterior
+  const lastMonth = new Date(date.setMonth(date.getMonth() - 1)) 
+  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1)) 
 
   try {
     const income = await Order.aggregate([
       {
         $match: {
           createdAt: { $gte: previousMonth },
-          ...(productId && {  // MUITO IMPORTANTE: cria novo produto através de uma condição
-            products: { $elemMatch: { productId } }, // $elemematch corresponde aos itens do array menos um elemnto (id)
+          ...(productId && {  
+            products: { $elemMatch: { productId } }, 
           }),
         },
       },

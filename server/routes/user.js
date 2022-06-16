@@ -3,19 +3,18 @@ const User = require("../models/User")
 const { verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./verifyToken")
 const CryptoJS = require("crypto-js")
 
-//UPDATE
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   if (req.body.password) {
     req.body.password = CryptoJS.AES.encrypt(
       req.body.password,
       process.env.PASS_SEC
-    ).toString();  // no update a senha também será criptografada
+    ).toString(); 
   }
   try {
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
       {
-        $set: req.body, // $:set pega tudo que está no body e seta(altera)
+        $set: req.body, 
       },
       { new: true }
     )
@@ -25,7 +24,6 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 })
 
-//DELETE
 router.delete("/:id",  async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id)
@@ -35,7 +33,6 @@ router.delete("/:id",  async (req, res) => {
   }
 })
 
-//GET USER
 router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const user = await User.findById(req.params.id)
@@ -46,35 +43,32 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
   }
 })
 
-// GET ALL USERs
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   const query = req.query.new;
   try {
     const users = query
-      ? await User.find().sort({ _id: -1 }).limit(5) // apresenta usuário mais recente // sem sort() e limit(5) = cinco ultimos
-      : await User.find() // ou todos os usuários
+      ? await User.find().sort({ _id: -1 }).limit(5) 
+      : await User.find() 
     res.status(200).json(users)
   } catch (err) {
     res.status(500).json(err)
   }
 })
 
-//GET USER STATS
-
 router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
   const date = new Date()
-  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1)) // retorna os usuários do ano anterior
+  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1)) 
 
   try {
     const data = await User.aggregate([
       { $match: { createdAt: { $gte: lastYear } } },
       {
         $project: {
-          month: { $month: "$createdAt" }, // atribui o mes ao ano em que o usuário foi criado
+          month: { $month: "$createdAt" }, 
         },
       },
       {
-        $group: { _id: "$month", total: { $sum: 1 }, // agrupa usuários por id, mes e total (somando todos em 1)
+        $group: { _id: "$month", total: { $sum: 1 }, 
         },
       },
     ])

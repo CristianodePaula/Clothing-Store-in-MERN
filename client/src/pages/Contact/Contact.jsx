@@ -18,7 +18,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/contact", {
+      const res = await axios.post("http://localhost:5000/api/contacts", {
         name,
         email,
         message,

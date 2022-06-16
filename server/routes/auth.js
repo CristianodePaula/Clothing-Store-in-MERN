@@ -3,7 +3,6 @@ const User = require("../models/User")
 const CryptoJS = require("crypto-js")
 const jwt = require("jsonwebtoken")
 
-//REGISTER
 router.post("/register", async (req, res) => {
   const newUser = new User({
     username: req.body.username,
@@ -11,33 +10,33 @@ router.post("/register", async (req, res) => {
     password: CryptoJS.AES.encrypt(
       req.body.password,
       process.env.PASS_SEC
-    ).toString(),   // criptografa o password com respando no passe secreto
-  }); 
+    ).toString(),   
+  }) 
 
   try {
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
-  } catch (err) {
-    res.status(500).json(err);
+    const savedUser = await newUser.save()
+    res.status(201).json(savedUser) 
+   } catch (err) {
+    res.status(500).json(err)
   }
-});
+})
 
 router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username })
-    const doesUserExist = user !== null  // a const "usuário existe" receberá o usuário e verá se seu valor é diferente de nulo
+    const doesUserExist = user !== null  
     
-    if (doesUserExist) {    // se o valor for diferente de nulo
+    if (doesUserExist) {    
       const hashedPassword = CryptoJS.AES.decrypt(  
         user.password,
         process.env.PASS_SEC
-      ) // a constante hasp ira descripografar a senha em face do passe secreto
-    
-      const password = hashedPassword.toString(CryptoJS.enc.Utf8) // a cons password irá receber hasp e inserir em "a senha é valida"
+      ) 
+
+      const password = hashedPassword.toString(CryptoJS.enc.Utf8) 
       const isValidPassword = password === req.body.password 
       
-      if (isValidPassword) {  // quando a senha é valida 
-        const accessToken = jwt.sign(  // a const acessT irá autorizar 
+      if (isValidPassword) {  
+        const accessToken = jwt.sign(   
           {
             id: user._id,
             isAdmin: user.isAdmin,
@@ -46,9 +45,9 @@ router.post('/login', async (req, res) => {
           {expiresIn:"3d"}
         )
 
-        const { password, ...others } = user._doc; // oculta a senha tambem do mongodb 
+        const { password, ...others } = user._doc
     
-        return res.status(200).json({...others, accessToken});
+        return res.status(200).json({...others, accessToken})
       }
     }
     res.status(401).send("Usuário ou senha inválidos")

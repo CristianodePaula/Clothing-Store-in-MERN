@@ -5,7 +5,7 @@ Click to watch the video on youtube
 
 ## 🚀 Starting
 
-In this project, a full MERN stack store, animated, responsive fully functional and secure. Soon I will make more updates with new features.    
+Welcome to another full stack project! This time, a complete, modern, lively clothing store with user security and admin panel and pagination is performed in Stripe.
 
 ## 📋 Prerequisites
 
@@ -26,9 +26,7 @@ In this project, a full MERN stack store, animated, responsive fully functional 
 
 ## 📌 Version
 
-0.1 
-In this version I worked the API and MERN integration. 
-In the next update I will bring the admin panel and the latest fixes!
+0.2 In this update I will make the first adjustments in the admin panel. In new updates I will make the necessary bug fixes! Hugs
 
 ## ✒️ Author
 
