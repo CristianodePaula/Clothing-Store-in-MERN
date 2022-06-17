@@ -14,7 +14,7 @@ export const productSlice = createSlice({
       state.error = false
     },
     getProductSuccess: (state, action) => {
-      state.isFetching = false;
+      state.isFetching = false
       state.products = action.payload
     },
     getProductFailure: (state) => {
@@ -29,7 +29,7 @@ export const productSlice = createSlice({
     deleteProductSuccess: (state, action) => {
       state.isFetching = false
       state.products.splice(
-        state.products.findIndex((item) => item._id === action.payload),
+        state.products.findIndex((product) => product._id === action.payload),
         1
       );
     },
@@ -45,8 +45,8 @@ export const productSlice = createSlice({
     updateProductSuccess: (state, action) => { 
       state.isFetching = false
       state.products[
-        state.products.findIndex((item) => item._id === action.payload.id) 
-      ] = action.payload.product; 
+        state.products.findIndex((product) => product._id === action.payload.id) 
+      ] = action.payload.product
     },
     updateProductFailure: (state) => {
       state.isFetching = false
@@ -58,7 +58,7 @@ export const productSlice = createSlice({
       state.error = false
     },
     addProductSuccess: (state, action) => {
-      state.isFetching = false;
+      state.isFetching = false
       state.products.push(action.payload)
     },
     addProductFailure: (state) => {
@@ -66,7 +66,7 @@ export const productSlice = createSlice({
       state.error = true
     },
   },
-});
+})
 
 export const {
   getProductStart,

@@ -1,25 +1,74 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useState, useEffect, useMemo } from 'react'
+import {
+  Container,
+  Top,
+  Center,
+  Bottom
+} from './HomeStyle'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Topbar from '../../components/Topbar/Topbar'
 import Widgets from '../../components/Widgets/Widgets'
 import Statistics from '../../components/Statistics/Statistics'
+import RecentUsers from '../../components/RecentUsers/RecentUsers'
+import RecentOrders from '../../components/RecentOrders/RecentOrders'
+import { userRequest } from "../../resources/requestMethods"
 
-const Container = styled.div`
-  display: flex;
-`
-const TopContainer = styled.div`
-  flex: 6;
-`
 export default function Home() {
+
+  const [userStats, setUserStats] = useState([])
+
+  const MONTHS = useMemo(
+    () => [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Agu",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    []
+  )
+
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await userRequest.get("/users/stats")
+        res.data.map((item) =>
+          setUserStats((prev) => [
+            ...prev,
+            { name: MONTHS[item._id - 1], "Active User": item.total },
+          ])
+        );
+      } catch { }
+    };
+    getStats()
+  }, [MONTHS])
+
   return (
     <Container>
       <Sidebar />
-      <TopContainer>
+      <Top>
         <Topbar />
-        <Widgets />
-        <Statistics />
-      </TopContainer>
+        <Center>
+          <Widgets />
+          <Statistics
+            data={userStats}
+            title="User Analytics"
+            grid
+            dataKey="Active User"
+          />
+        </Center>
+        <Bottom>
+          <RecentOrders />
+          <RecentUsers />
+        </Bottom>
+      </Top>
     </Container>
   )
 }

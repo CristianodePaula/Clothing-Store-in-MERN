@@ -1,4 +1,3 @@
-// redux responsável pela chamada api
 import { loginFailure, loginStart, loginSuccess, loginEnd } from "./userRedux"
 import { publicRequest } from "../resources/requestMethods"
 

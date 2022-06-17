@@ -1,35 +1,39 @@
-import React from 'react'
-import styled from 'styled-components'
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 180px;
-  width: 86vw;
-  border-bottom: 1px solid black;
-`
-const WidgetBox = styled.div`
-  height: 140px;
-  width: 250px;
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 10px 10px 5px #909090;
-  margin: 10px;
-  transition: 0.5s ease-in-out;
-  &:hover {
-    transform: scale(1.05)
-  }
-`
+import React, { useState, useEffect } from 'react'
+import {
+  Container,
+  WidgetBox
+} from './WidgetsStyle'
+import { userRequest } from "../../resources/requestMethods"
 
 export default function Widget() {
+
+  const [income, setIncome] = useState([])
+  const [perc, setPerc] = useState(0)
+
+  useEffect(() => {
+    const getIncome = async () => {
+      try {
+        const res = await userRequest.get("orders/income")
+        setIncome(res.data);
+        setPerc((res.data[1].total * 100) / res.data[0].total - 100)
+      } catch {}
+    }
+    getIncome()
+  }, [])
+
+
   return (
     <Container>
         <WidgetBox>
-
-        </WidgetBox>
-        <WidgetBox>
-          
+        <span className="featuredMoney">${income[1]?.total}</span>
+          <span className="featuredMoneyRate">
+            %{Math.floor(perc)}{" "}
+            {perc < 0 ? (
+              <button className="featuredIcon negative" />
+            ) : (
+              <button className="featuredIcon" />
+            )}
+          </span>
         </WidgetBox>
         <WidgetBox>
           
