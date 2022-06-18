@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import {
   Container,
-  WidgetBox
+  WidgetBox,
+  H3,
+  Box,
+  Span
 } from './WidgetsStyle'
 import { userRequest } from "../../resources/requestMethods"
+import { ArrowDownward, ArrowUpward } from "@material-ui/icons";
 
 export default function Widget() {
 
@@ -21,25 +25,27 @@ export default function Widget() {
     getIncome()
   }, [])
 
-
   return (
     <Container>
         <WidgetBox>
-        <span className="featuredMoney">${income[1]?.total}</span>
-          <span className="featuredMoneyRate">
-            %{Math.floor(perc)}{" "}
+          <H3>Saldo</H3>
+          <Box>
+          <Span>${income[1]?.total}</Span>
+          <Span>
+          %{Math.floor(perc)}{" "}
             {perc < 0 ? (
-              <button className="featuredIcon negative" />
+              <ArrowDownward className="featuredIcon negative" />
             ) : (
-              <button className="featuredIcon" />
+              <ArrowUpward className="featuredIcon" />
             )}
-          </span>
+          </Span>
+          </Box>
         </WidgetBox>
+
         <WidgetBox>
-          
         </WidgetBox>
+
         <WidgetBox>
-          
         </WidgetBox>
     </Container>
   )

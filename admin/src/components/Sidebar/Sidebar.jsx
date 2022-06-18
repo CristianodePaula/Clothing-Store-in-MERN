@@ -8,8 +8,9 @@ import {
   Box,
   Icon,
   Item,
-  ThemeStyle
+
 } from './SidebarStyle'
+
 import {
   FaShopify,
   FaChalkboardTeacher,
@@ -21,14 +22,12 @@ import {
 } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-
-
 export default function Sidebar() {
   return (
     <Container>
       <LogoBox>
-        <LogoIcon>
-          <FaShopify />
+        <LogoIcon >
+          <FaShopify  style={{fill: "white"}} />
         </LogoIcon>
         <Logo>Capital Shop</Logo>
       </LogoBox>
@@ -74,7 +73,9 @@ export default function Sidebar() {
         <Icon>
           <FaChartBar />
         </Icon>
+        <Link to='/statistics'>
         <Item> Estatísticas </Item>
+        </Link>
       </Box>
 
       <Box>
@@ -85,10 +86,6 @@ export default function Sidebar() {
           <Item> Menssagens </Item>
         </Link>
       </Box>
-
-      <Title>Temas</Title>
-        <ThemeStyle></ThemeStyle>
-        <ThemeStyle></ThemeStyle>
 
     </Container>
   )

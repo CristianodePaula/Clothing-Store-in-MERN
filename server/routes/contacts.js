@@ -24,4 +24,14 @@ router.post("/", async (req, res) => {
     }
   })
 
+
+  router.delete("/:id", async (req, res) => {
+    try {
+      await Contact.findByIdAndDelete(req.params.id)
+      res.status(200).json("Menssagem deletada...")
+    } catch (err) {
+      res.status(500).json(err)
+    }
+  })
+
 module.exports = router

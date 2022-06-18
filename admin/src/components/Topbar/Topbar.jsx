@@ -1,10 +1,12 @@
 import React from 'react'
+
 import {
   Container,
   BoxSettings,
   ImageUser,
   Icon
 } from './TopbarStyle'
+
 import imgUser from '../../img/imgUser.jpg'
 import { FaBell, FaUserCog } from 'react-icons/fa'
 

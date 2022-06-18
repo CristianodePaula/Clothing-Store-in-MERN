@@ -20,7 +20,8 @@ export const LogoIcon = styled.a`
 `
 export const Logo = styled.h1`
   font-size: 15px;
-  padding-left: 10px
+  padding-left: 10px;
+  color: white;
 `
 export const Box = styled.div`
   display: flex;
@@ -46,4 +47,3 @@ export const Item = styled.span`
   margin-left: 12px;
   cursor: pointer;
 `
-export const ThemeStyle = styled.div``

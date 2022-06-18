@@ -1,11 +1,21 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
 
+export const rightToLeftBox = keyframes`
+0% { 
+  transform: translateX(40px); 
+  opacity: 0
+}
+100% { 
+  transform: translateX(0); 
+  opacity: 1
+}
+`
 export const Container = styled.div` 
     font-size: 20px;
 `
 export const BoxCharts = styled.div`
     height: 160px;
-    width: 300px;
+    width: 280px;
     padding: 20px;
     box-shadow: 10px 10px 5px #909090;
     border: 1px solid black;
@@ -14,5 +24,6 @@ export const BoxCharts = styled.div`
     &:hover {
       transform: scale(1.05)
     }
+    animation: ${rightToLeftBox } 2s ease-in-out;
 `
 export const H1 = styled.div``

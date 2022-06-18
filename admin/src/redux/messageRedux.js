@@ -31,15 +31,14 @@ export const messageSlice = createSlice({
       state.messages.splice(
         state.messages.findIndex((message) => message._id === action.payload),
         1
-      );
+      )
     },
     deleteMessageFailure: (state) => {
       state.isFetching = false
       state.error = true
     },
-
-    },
-  })
+  },
+})
 
 export const {
   getMessageStart,

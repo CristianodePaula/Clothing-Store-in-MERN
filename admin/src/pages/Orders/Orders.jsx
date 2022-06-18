@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Container,
   TopContainer,
+  Wrapper,
   Table,
   THead,
   TBody,
@@ -10,7 +11,7 @@ import {
   TBodyTR,
   TD,
   Button
-} from './OdersStyle'
+} from './OrdersStyle'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Topbar from '../../components/Topbar/Topbar'
 import { format } from "timeago.js"
@@ -35,38 +36,40 @@ export default function Orders() {
       <Sidebar />
       <TopContainer>
         <Topbar />
-        <Table>
-          <THead>
-            <THeadTR>
-              <TH>UserID</TH>
-              <TH>Preço</TH>
-              <TH>País</TH>
-              <TH>Status</TH>
-              <TH>Data</TH>
-              <TH>Editar</TH>
-            </THeadTR>
-          </THead>
-          <TBody>
-            {orders.map((order) => {
-              return (
-                <TBodyTR key={order.id}>
-                  <TD>{order.userId}</TD>
-                  <TD>R${order.amount},00</TD>
-                  <TD>{order.address}</TD>
-                  <TD>{order.status}</TD>
-                  <TD>{format(order.createdAt)}</TD>
-                  <TD>
-                    <Button
-                      onClick={() => handleDelete(order._id)}
-                      type="button"
-                    > Excluir
-                    </Button>
-                  </TD>
-                </TBodyTR>
-              )
-            })}
-          </TBody>
-        </Table>
+        <Wrapper>
+          <Table>
+            <THead>
+              <THeadTR>
+                <TH>UserID</TH>
+                <TH>Preço</TH>
+                <TH>País</TH>
+                <TH>Status</TH>
+                <TH>Data</TH>
+                <TH>Editar</TH>
+              </THeadTR>
+            </THead>
+            <TBody>
+              {orders.map((order) => {
+                return (
+                  <TBodyTR key={order.id}>
+                    <TD>{order.userId}</TD>
+                    <TD>R${order.amount},00</TD>
+                    <TD>{order.address}</TD>
+                    <TD>{order.status}</TD>
+                    <TD>{format(order.createdAt)}</TD>
+                    <TD>
+                      <Button
+                        onClick={() => handleDelete(order._id)}
+                        type="button"
+                      > Excluir
+                      </Button>
+                    </TD>
+                  </TBodyTR>
+                )
+              })}
+            </TBody>
+          </Table>
+        </Wrapper>
       </TopContainer>
     </Container>
   )

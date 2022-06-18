@@ -77,6 +77,10 @@ export const Button = styled.button`
     color: green;
     cursor: not-allowed;
   }
+  transition: 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.1)
+  }
   ${mobile({ 
     height: '25px',
     width: '100px',

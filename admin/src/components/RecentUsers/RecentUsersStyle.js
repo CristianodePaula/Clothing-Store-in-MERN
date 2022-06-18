@@ -1,59 +1,48 @@
-import styled from 'styled-components'
+import styled, {
+  keyframes
+} from 'styled-components'
 
-export const Container = styled.div`
-  padding: 20px;
+export const rightToLeftBox = keyframes `
+0% { 
+  transform: translateY(40px); 
+  opacity: 0
+}
+100% { 
+  transform: translateY(0); 
+  opacity: 1
+}
+`
+export const Container = styled.div `
+  padding: 10px;
   box-shadow: 10px 10px 5px #909090;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 20px;
   transition: 0.5s ease-in-out; 
   &:hover {
     transform: scale(1.05)
   }
+  animation: ${rightToLeftBox } 2s ease-in-out;
 `
-export const Table = styled.table`
+export const Table = styled.table `
   width: 100%;
-  height: 30px;
-  border-collapse: collapse;
   text-align: center;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 10px 10px 5px #909090;
 `
-export const THead = styled.thead`
-  position: sticky;
-  z-index: 100;
+export const H1 = styled.p `
+  font-size: 18px;
 `
-export const THeadTR = styled.tr`
-  background: grey;
+export const TBody = styled.tbody `
 `
-export const TH = styled.th`
-  font-weight: normal;
-  padding: 10px;
+export const TBodyTR = styled.tr `
+  background: darkgrey;
+`
+export const TD = styled.td `
+  padding: 5px;
+  font-size: 13px;
   color: white;
-  text-transform: capitalize;
-  font-weight: 600;
-  font-size: 14px;
-  :not(:last-of-type) {
-      border-right: 1px solid black;
-  }
-  :first-of-type {
-      width: 1%;
-      white-space: nowrap;
-  }
 `
-export const TBody = styled.tbody``
-export const TBodyTR = styled.tr`
-  background: gainsboro;
-`
-export const TD = styled.td`
-  padding: 10px;
-  
-  border: 1px solid grey;
-  font-size: 14px;
-`
-export const Img = styled.img`
-  height: 40px;
-  width: 40px;
+export const Img = styled.img `
+  height: 30px;
+  width: 30px;
   object-fit:cover;
   border-radius: 50%;
 `

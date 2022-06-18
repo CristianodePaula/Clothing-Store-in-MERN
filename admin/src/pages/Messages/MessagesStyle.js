@@ -1,12 +1,26 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
+export const topToBottomBox = keyframes `
+0% { 
+  transform: translateX(-40px); 
+  opacity: 0
+}
+100% { 
+  transform: translateX(0); 
+  opacity: 1
+}
+`
 export const Container = styled.div`
   display: flex;
-  padding: 10px;
+  background-image: linear-gradient(to bottom right, black, grey, gainsboro, white);
 `
 export const TopContainer = styled.div`
   flex: 6;  
-  padding: 10px;
+`
+export const Wrapper = styled.div`
+  padding: 40px;
+  margin-top: 80px;
+  animation: ${topToBottomBox } 2s ease-in-out;
 `
 export const Table = styled.table`
   width: 100%;
@@ -53,4 +67,8 @@ export const Button = styled.button`
   color: white;
   border: 1px solid grey;
   border-radius: 5px
+  transition: 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.1)
+  }
 `

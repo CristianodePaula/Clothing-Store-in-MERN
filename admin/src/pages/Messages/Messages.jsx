@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
   Container,
   TopContainer,
+  Wrapper,
   Table,
   THead,
   TBody,
@@ -17,7 +18,7 @@ import { userRequest } from "../../resources/requestMethods"
 import { useDispatch } from "react-redux"
 import { deleteMessage } from '../../redux/apiCalls'
 
-export default function Message() {
+export default function Messages() {
 
   const [messages, setMessages] = useState([])
   const dispatch = useDispatch()
@@ -41,34 +42,36 @@ export default function Message() {
       <Sidebar />
       <TopContainer>
         <Topbar />
-        <Table>
-          <THead>
-            <THeadTR>
-              <TH>Nome</TH>
-              <TH>Email</TH>
-              <TH>Menssage</TH>
-              <TH>Editar</TH>
-            </THeadTR>
-          </THead>
-          <TBody>
-            {messages.map((message) => {
-              return (
-                <TBodyTR key={message.id}>
-                  <TD>{message.name}</TD>
-                  <TD>{message.email}</TD>
-                  <TD>{message.message}</TD>
-                  <TD>
-                    <Button
-                      onClick={() => handleDelete(message._id)}
-                      type="button"
-                    > Excluir
-                    </Button>
-                  </TD>
-                </TBodyTR>
-              )
-            })}
-          </TBody>
-        </Table>
+        <Wrapper>
+          <Table>
+            <THead>
+              <THeadTR>
+                <TH>Nome</TH>
+                <TH>Email</TH>
+                <TH>Menssage</TH>
+                <TH>Editar</TH>
+              </THeadTR>
+            </THead>
+            <TBody>
+              {messages.map((message) => {
+                return (
+                  <TBodyTR key={message.id}>
+                    <TD>{message.name}</TD>
+                    <TD>{message.email}</TD>
+                    <TD>{message.message}</TD>
+                    <TD>
+                      <Button
+                        onClick={() => handleDelete(message._id)}
+                        type="button"
+                      > Excluir
+                      </Button>
+                    </TD>
+                  </TBodyTR>
+                )
+              })}
+            </TBody>
+          </Table>
+        </Wrapper>
       </TopContainer>
     </Container>
   )

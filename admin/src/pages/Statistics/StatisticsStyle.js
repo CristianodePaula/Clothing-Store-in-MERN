@@ -6,7 +6,7 @@ export const Container = styled.div`
   background-image: linear-gradient(to bottom right, black, grey, gainsboro, white);
 `
 export const Top = styled.div`  
-flex: 6;
+  flex: 6;
 `
 export const Center = styled.div`
   height: 220px;
@@ -15,7 +15,8 @@ export const Center = styled.div`
   justify-content: space-around;
 `
 export const Bottom = styled.div`
+height: 220px;
   display: flex;
-  margin-top: 10px;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
 `

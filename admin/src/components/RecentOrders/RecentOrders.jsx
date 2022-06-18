@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
   Container,
   Table,
+  H1,
   THead,
   TBody,
   THeadTR,
@@ -13,14 +14,14 @@ import {
 import { userRequest } from "../../resources/requestMethods"
 import { format } from "timeago.js"
 
-export default function RecenteMessages() {
+export default function RecenteOrders() {
 
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await userRequest.get("orders")
+        const res = await userRequest.get("orders/?new=true")
         setOrders(res.data)
       } catch { }
     }
@@ -29,6 +30,7 @@ export default function RecenteMessages() {
 
   return (
     <Container>
+          <H1>Pedidos recentes</H1>
       <Table>
         <THead>
           <THeadTR>
@@ -40,7 +42,7 @@ export default function RecenteMessages() {
           </THeadTR>
         </THead>
         <TBody>
-          {orders.map((order) => {
+          {orders.slice(0, 3).map((order) => {
             return (
               <TBodyTR key={order.id}>
                 <TD>{order.userId}</TD>

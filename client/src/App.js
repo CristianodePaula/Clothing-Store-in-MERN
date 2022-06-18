@@ -10,7 +10,6 @@ import About from './pages/About/About'
 import Navbar from "./components/Navbar/Navbar"
 import AllCategories from './pages/AllCategories/AllCategories'
 import Contact from './pages/Contact/Contact'
-import User from './pages/User/User'
 import Cart from './pages/Cart/Cart'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
@@ -34,7 +33,6 @@ export default function App() {
             <Route path='/all' element={<AllProducts />} />
             <Route path='/categories' element={<AllCategories />} />
             <Route path='/contact' element={<Contact />} />
-            <Route path='/user' element={<User />} />
             <Route path="/products/:category" element={<ProductFiltered />} />
             <Route path='/product/:id' element={user ? <UnitProduct /> : <Login />} />
             <Route path='/cart' element={<Cart />} />

@@ -4,7 +4,7 @@ import {
   Top,
   Center,
   Bottom
-} from './HomeStyle'
+} from './StatisticsStyle'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Topbar from '../../components/Topbar/Topbar'
 import Widgets from '../../components/Widgets/Widgets'
@@ -58,16 +58,14 @@ export default function Home() {
         <Topbar />
         <Center>
           <Widgets />
-          <Chart
-            data={userStats}
-            title="User Analytics"
-            grid
-            dataKey="Active User"
-          />
         </Center>
         <Bottom>
-          <RecentOrders />
-          <RecentUsers />
+        <Chart
+          data={userStats}
+          title="User Analytics"
+          grid
+          dataKey="Active User"
+        />
         </Bottom>
       </Top>
     </Container>

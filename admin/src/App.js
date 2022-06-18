@@ -14,7 +14,11 @@ import Users from './pages/Users/Users'
 import Products from './pages/Products/Products'
 import Orders from './pages/Orders/Orders'
 import Messages from './pages/Messages/Messages'
-import Product from './components/Product/Product'
+import EditProduct from './pages/EditProduct/EditProduct'
+import NewProduct from './pages/NewProduct/NewProduct'
+import NewUser from './pages/NewUser/NewUser'
+import Statistics from './pages/Statistics/Statistics'
+
 
 function App() {
 
@@ -29,8 +33,11 @@ function App() {
           <Route path = "/" element = {<Home />}/>        
           <Route path = "/users" element = {<Users />}/>    
           <Route path = "/products" element = {<Products />}/>  
-          <Route path = "/product/:productId" element = {< Product />}/>   
+          <Route path = "/product/:productId" element = {< EditProduct />}/>  
+          <Route path="/newproduct" element = {<NewProduct />}/>
+          <Route path="/newuser" element = {<NewUser />}/>  
           <Route path="/requests" element = {<Orders />}/> 
+          <Route path ="/statistics" element={< Statistics />}/>
           <Route path = "/message" element={< Messages />}/>    
         </>
       )} 

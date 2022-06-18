@@ -1,16 +1,28 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+export const scaleBox = keyframes`
+    0% { 
+        transform: scale(0.7);
+        opacity: 0
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1
+    }
+`
 
 export const Container = styled.div`
     height: 240px;
-    width: 640px;
+    width: 550px;
     padding: 20px;
-    box-shadow: 10px 10px 5px #909090;
+    box-shadow: 10px 10px 10px #909090;
     border: 1px solid black;
     border-radius: 10px;
     transition: 0.5s ease-in-out;
     &:hover {
         transform: scale(1.05)
     }
+    animation: ${ scaleBox } 2s ease-in-out;
 `
 export const Table = styled.table`
     width: 100%;
@@ -18,6 +30,9 @@ export const Table = styled.table`
     text-align: center;
     border-radius: 5px;
     overflow: hidden;
+`
+export const H1 = styled.p`
+  font-size: 18px;
 `
 export const THead = styled.thead`
     position: sticky;
