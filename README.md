@@ -1,7 +1,3 @@
-### ERROS -- 
-
-# 01 --- atualizar produto
-
 # STORE IN MERN STACK
 
 Click to watch the video on youtube 
