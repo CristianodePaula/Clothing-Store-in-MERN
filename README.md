@@ -26,7 +26,7 @@ Welcome to another full stack project! This time, a complete, modern, lively clo
 
 ## 📌 Version
 
-0.2 In this update I will make the first adjustments in the admin panel. In new updates I will make the necessary bug fixes! Hugs
+This repository is basically a backup. From version "0.1 mern integration" onwards there may be commits in order to improve the code.
 
 ## ✒️ Author
 
