@@ -14,30 +14,31 @@ import {
   TD,
   Img,
   BtnEdit,
-} from './UsersStyle'
+} from './CategoriesStyle'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Topbar from '../../components/Topbar/Topbar'
 import { userRequest } from "../../resources/requestMethods"
 import { useDispatch } from "react-redux"
-import { deleteUser } from '../../redux/apiCalls'
+import { deleteCategorie } from '../../redux/apiCalls'
 
-export default function Users() {
+export default function Categories() {
 
-  const [users, setUsers] = useState([])
+  const [categories, setCategories] = useState([])
   const dispatch = useDispatch()
 
+
   useEffect(() => {
-    const getUsers = async () => {
+    const getCategories = async () => {
       try {
-        const res = await userRequest.get("users")
-        setUsers(res.data)
+        const res = await userRequest.get("categories")
+        setCategories(res.data)
       } catch { }
     }
-    getUsers()
+    getCategories()
   }, [])
 
   const handleDelete = (id) => {
-    deleteUser(id, dispatch)
+    deleteCategorie(id, dispatch)
   }
 
   return (
@@ -46,7 +47,7 @@ export default function Users() {
       <TopContainer>
         <Topbar />
         <Wrapper>
-          <Link to={"/newuser"}>
+          <Link to={"/newcategorie"}>
             <BtnCreate
               type='button'
               className='btnEdit'
@@ -58,27 +59,23 @@ export default function Users() {
               <THeadTR>
                 <TH>Imagem</TH>
                 <TH>Nome</TH>
-                <TH>Email</TH>
-                <TH>ID</TH>
-                <TH>Modificar</TH>
+                <TH>Excluir</TH>
               </THeadTR>
             </THead>
             <TBody>
-              {users.map((user) => {
+              {categories.map((categorie) => {
                 return (
-                  <TBodyTR key={user.id}>
+                  <TBodyTR key={categorie.id}>
                     <TD>
-                      <Img src={user.profilePic
+                      <Img src={categorie.img
                         ||
                         "https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
                       } />
                     </TD>
-                    <TD>{user.username}</TD>
-                    <TD>{user.email}</TD>
-                    <TD>{user._id}</TD>
+                    <TD>{categorie.categorie}</TD>
                     <TD>
                       <BtnEdit
-                        onClick={() => handleDelete(user._id)}
+                        onClick={() => handleDelete(categorie._id)}
                         type="button"
                       > Excluir
                       </BtnEdit>

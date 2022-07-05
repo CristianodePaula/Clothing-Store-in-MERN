@@ -1,62 +1,45 @@
 import styled from 'styled-components'
-import { mobile } from '../../resources/Responsive'
 
-export const Container = styled.div `
+export const Container = styled.div`
   display: flex;
   background-image: linear-gradient(to bottom right, black, grey, gainsboro, white);
-  ${mobile({
-    minHeight:'100vh'
-  })}
 `
-export const TopContainer = styled.div `
+export const TopContainer = styled.div`
   flex: 6;  
 `
-export const Wrapper = styled.div `
+export const Wrapper = styled.div`
 `
-export const Title = styled.h1 `
+export const Title = styled.h1`
   font-size: 25px;
   margin-top: 50px;
   margin-left: 50px;
   color: blue;
   text-shadow: 5px 5px 5px #000;
 `
-export const CProduct = styled.div `
-  height: 500px;
+export const CProduct = styled.div`
+  padding: 20px;
+  height: 340px;
   width: 800px;
   border-radius: 20px;
   background: silver;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
   margin: 50px;
 `
-export const Image = styled.img `
-  height: 360px;
+export const Image = styled.img`
+  height: 400px;
   width: 300px;
   object-fit: cover;
 `
-export const CDesc = styled.form `
+export const CDesc = styled.form`
   display: flex;
   flex-direction: column;
 `
-export const Desc = styled.input `
-  font-size: 15px;
+export const Desc = styled.input`
+  font-size: 20px;
   margin-bottom: 20px;
-`
-export const Button = styled.button `
-  margin-top: 20px;
-  text-align: center;
-  background-color: darkgreen;
-  color: white;
-  padding: 10px;
-  font-size: 15px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.5s ease-in-out;
-  &:hover {
-    transform: scale(1.1)
-  }
 `
 export const Form = styled.form`
   margin-top: 20px;
@@ -72,9 +55,10 @@ export const Label = styled.label`
   text-align: center;
   justify-content: center;
   margin: 10px 0;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 400;
   color: white;
+  font-size: 15px;
   text-shadow: 3px 3px 4px black;
 `
 export const Input = styled.input`
@@ -83,4 +67,15 @@ export const Input = styled.input`
   border: none;
   border-radius: 10px;
   outline: none;
+`
+export const Button = styled.button`
+  margin-top: 20px;
+  text-align: center;
+  background-color: darkgreen;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 `

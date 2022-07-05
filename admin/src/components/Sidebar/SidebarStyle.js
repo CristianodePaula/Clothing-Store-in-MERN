@@ -1,15 +1,20 @@
 import styled from "styled-components"
+import { mobile } from '../../resources/Responsive'
 
 export const Container = styled.div`
   height: 100vh;
   width: 12vw;
   padding: 10px;
+  ${mobile({
+    display: 'none'
+  })}
 `
 export const LogoBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.5s ease-in-out;
+  cursor: pointer;
   &:hover {
     transform: scale(0.8)
   }
@@ -41,9 +46,17 @@ export const Title = styled.h1`
   font-size: 16px;
   color: grey;
   margin-top: 20px;
+  transition: 0.5s linear;
+  cursor: pointer;
+  &:hover {
+    color: chocolate;
+  }
 `
 export const Item = styled.span`
   font-size: 14px;
   margin-left: 12px;
-  cursor: pointer;
+  transition: 0.5s linear;
+  &:hover {
+    color: chocolate;
+  }
 `

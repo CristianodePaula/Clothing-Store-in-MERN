@@ -9,8 +9,6 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import Topbar from '../../components/Topbar/Topbar'
 import Widgets from '../../components/Widgets/Widgets'
 import Chart from '../../components/Chart/Chart'
-import RecentUsers from '../../components/RecentUsers/RecentUsers'
-import RecentOrders from '../../components/RecentOrders/RecentOrders'
 import { userRequest } from "../../resources/requestMethods"
 
 export default function Home() {

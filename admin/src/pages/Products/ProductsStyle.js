@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components'
+import { mobile } from '../../resources/Responsive'
 
 export const topToBottomBox = keyframes `
 0% { 
@@ -23,6 +24,9 @@ export const scaleBox = keyframes`
 export const Container = styled.div`
   display: flex;
   background-image: linear-gradient(to bottom right, black, grey, gainsboro, white);
+  ${mobile({
+    minHeight:'100vh',
+  })}
 `
 export const TopContainer = styled.div`
   flex: 6;  
@@ -37,6 +41,9 @@ export const Table = styled.table`
   text-align: center;
   border-radius: 15px;
   overflow: hidden;
+  ${mobile({
+    width: '50%'
+  })}
 `
 export const THead = styled.thead`
   position: sticky;
@@ -59,6 +66,9 @@ export const TH = styled.th`
     width: 1%;
     white-space: nowrap;
   }
+  ${mobile({
+    fontSize: '7px',
+  })}
 `
 export const TBody = styled.tbody``
 export const TBodyTR = styled.tr`
@@ -68,11 +78,18 @@ export const TD = styled.td`
   padding: 10px;
   border: 1px solid grey;
   font-size: 14px;
+  ${mobile({
+    fontSize: '7px',
+  })}
 `
 export const Img = styled.img`
   height: 200px;
   width: 160px;
   object-fit:cover;
+  ${mobile({
+    height: '50px',
+    width: '40px'
+  })}
 `
 export const BtnCreate = styled.button`
   background: green;
@@ -87,6 +104,11 @@ export const BtnCreate = styled.button`
     transform: scale(1.1)
   }
   animation: ${ scaleBox } 2s ease-in-out; 
+  ${mobile({
+    width: '40px',
+    height: '20px',
+    fontSize: '8px',
+  })}
 `
 export const BtnEdit = styled.button`
   background: blue;
@@ -100,6 +122,11 @@ export const BtnEdit = styled.button`
   &:hover {
     transform: scale(1.1)
   }
+  ${mobile({
+    width: '40px',
+    height: '20px',
+    fontSize: '8px',
+  })}
 `
 export const BtnDelete = styled.button`
   background: red;
@@ -112,4 +139,9 @@ export const BtnDelete = styled.button`
   &:hover {
     transform: scale(1.1)
   }
+  ${mobile({
+    width: '40px',
+    height: '20px',
+    fontSize: '8px',
+  })}
 `

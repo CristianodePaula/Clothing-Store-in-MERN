@@ -1,6 +1,9 @@
 const router = require("express").Router()
 const User = require("../models/User")
-const { verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./verifyToken")
+const {
+  verifyToken, 
+  verifyTokenAndAuthorization, 
+  verifyTokenAndAdmin } = require("./verifyToken")
 const CryptoJS = require("crypto-js")
 
 router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
@@ -24,7 +27,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   }
 })
 
-router.delete("/:id",  async (req, res) => {
+router.delete("/:id",  verifyTokenAndAuthorization, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id)
     res.status(200).json("Usuário deletado")
@@ -77,6 +80,5 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(err)
   }
 })
-
 
 module.exports = router

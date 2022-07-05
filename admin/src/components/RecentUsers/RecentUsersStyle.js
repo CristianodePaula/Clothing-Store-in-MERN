@@ -1,6 +1,9 @@
 import styled, {
   keyframes
 } from 'styled-components'
+import {
+  mobile
+} from '../../resources/Responsive'
 
 export const rightToLeftBox = keyframes `
 0% { 
@@ -13,7 +16,7 @@ export const rightToLeftBox = keyframes `
 }
 `
 export const Container = styled.div `
-  padding: 10px;
+  padding: 20px;
   box-shadow: 10px 10px 5px #909090;
   border: 1px solid black;
   border-radius: 20px;
@@ -21,24 +24,40 @@ export const Container = styled.div `
   &:hover {
     transform: scale(1.05)
   }
+  margin: 10px;
   animation: ${rightToLeftBox } 2s ease-in-out;
+  ${mobile({
+  })}
+
 `
 export const Table = styled.table `
   width: 100%;
-  text-align: center;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+  ${mobile({
+    width: '50%'
+  })}
+
 `
-export const H1 = styled.p `
+export const H1 = styled.p`
   font-size: 18px;
+  ${mobile({
+    fontSize: '10px'
+  })}
 `
-export const TBody = styled.tbody `
+export const TBody = styled.tbody`
 `
-export const TBodyTR = styled.tr `
+export const TBodyTR = styled.tr`
   background: darkgrey;
 `
 export const TD = styled.td `
   padding: 5px;
   font-size: 13px;
   color: white;
+  ${mobile({
+    fontSize: '8px'
+  })}
 `
 export const Img = styled.img `
   height: 30px;
