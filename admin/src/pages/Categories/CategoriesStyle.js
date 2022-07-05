@@ -1,36 +1,41 @@
-import styled, { keyframes } from 'styled-components'
+import styled, {
+  keyframes
+} from 'styled-components'
 import { mobile } from '../../resources/Responsive'
 
-export const topToBottomBox = keyframes `
+export const topToBottomBox = keyframes`
 0% { 
-  transform: translateX(40px); 
+  transform: translateY(40px); 
   opacity: 0
 }
 100% { 
-  transform: translateX(0); 
+  transform: translateY(0); 
   opacity: 1
 }
+`
+export const scaleBox = keyframes`
+    0% { 
+        transform: scale(0.2);
+        opacity: 0
+    }
+    100% { 
+        transform: scale(1);
+        opacity: 1
+    }
 `
 export const Container = styled.div`
   display: flex;
   background-image: linear-gradient(to bottom right, black, grey, gainsboro, white);
   ${mobile({
-    minHeight:'100vh'
-  })}
+  minHeight: '100vh'
+})}
 `
 export const TopContainer = styled.div`
   flex: 6;  
 `
 export const Wrapper = styled.div`
-  padding: 40px;
-  margin-top: 80px;
-  animation: ${topToBottomBox } 2s ease-in-out;
-  padding: 40px;
-  margin-top: 80px;
-  display: flex;
-  fkex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 30px;
+  animation: ${topToBottomBox} 2s ease-in-out;
 `
 export const Table = styled.table`
   width: 100%;
@@ -38,9 +43,10 @@ export const Table = styled.table`
   text-align: center;
   border-radius: 15px;
   overflow: hidden;
+  align-items: center;
   ${mobile({
-    width: '10%'
-  })}
+  width: '80%'
+})}
 `
 export const THead = styled.thead`
     position: sticky;
@@ -64,22 +70,46 @@ export const TH = styled.th`
         white-space: nowrap;
     }
     ${mobile({
-      fontSize: '8px',
-    })}
+  fontSize: '7px'
+})}
 `
 export const TBody = styled.tbody``
 export const TBodyTR = styled.tr`
     background: gainsboro;
 `
 export const TD = styled.td`
-    padding: 10px;
-    border: 1px solid grey;
-    font-size: 14px;
-    ${mobile({
-      fontSize: '8px'
-    })}
+  padding: 10px;
+  border: 1px solid grey;
+  font-size: 14px;
+  ${mobile({
+  fontSize: '7px'
+})}
 `
-export const Button = styled.button`
+export const Img = styled.img`
+  height: 100px;
+  width: 80px;
+  object-fit:cover;
+`
+export const BtnCreate = styled.button`
+  background: blue;
+  width: 80px;
+  padding: 5px;
+  color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    transform: scale(1.1)
+  }
+  animation: ${scaleBox} 2s ease-in-out;
+  ${mobile({
+  width: '40px',
+  height: '20px',
+  fontSize: '8px',
+})}
+`
+export const BtnEdit = styled.button`
   background: red;
   width: 80px;
   padding: 5px;
@@ -91,6 +121,8 @@ export const Button = styled.button`
     transform: scale(1.1)
   }
   ${mobile({
-    width: '50px'
-  })}
+  width: '40px',
+  height: '20px',
+  fontSize: '8px',
+})}
 `

@@ -22,6 +22,17 @@ import {
   deleteUserSuccess,
   deleteUserFailure,
 } from './userRedux'
+import { 
+  addCategorieStart,
+  addCategorieSuccess,
+  addCategorieFailure,
+  getCategorieStart,
+  getCategorieSuccess,
+  getCategorieFailure,
+  deleteCategorieStart,
+  deleteCategorieSuccess,
+  deleteCategorieFailure,
+} from './categorieRedux'
 import {
   getOrderStart,
   getOrderSuccess,
@@ -109,6 +120,37 @@ export const updateProduct = async (id, product, dispatch) => {
     dispatch(updateProductSuccess(res.data))
   } catch (err) {
     dispatch(updateProductFailure())
+  }
+}
+
+// CATEGORIES
+export const addCategorie = async (categorie, dispatch) => {
+  dispatch(addCategorieStart())
+  try {
+    const res = await userRequest.post(`/categories`, categorie)
+    dispatch(addCategorieSuccess(res.data))
+  } catch (err) {
+    dispatch(addCategorieFailure())
+  }
+}
+
+export const getCategories = async (dispatch) => {
+  dispatch(getCategorieStart())
+  try {
+    const res = await userRequest.get("/categories")
+    dispatch(getCategorieSuccess(res.data))
+  } catch (err) {
+    dispatch(getCategorieFailure())
+  }
+}
+
+export const deleteCategorie = async (id, dispatch) => {
+  dispatch(deleteCategorieStart())
+  try { 
+    const res = await userRequest.delete(`/categories/${id}`)
+    dispatch(deleteCategorieSuccess(res.data))
+  } catch (err) {
+    dispatch(deleteCategorieFailure())
   }
 }
 

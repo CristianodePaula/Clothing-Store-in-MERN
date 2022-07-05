@@ -17,6 +17,7 @@ import {
   FaUser,
   FaStoreAlt,
   FaAddressCard,
+  FaListAlt,
   FaChartBar,
   FaEnvelope,
 } from 'react-icons/fa'
@@ -59,22 +60,22 @@ export default function Sidebar() {
           <Item> Produtos </Item>
         </Link>
       </Box>
+
+      <Box>
+        <Icon>
+          <FaListAlt/>
+        </Icon>
+          <Link to='/categories'>
+            <Item> Categorias </Item>
+          </Link>
+      </Box>
+
       <Box>
         <Icon>
           <FaAddressCard />
         </Icon>
         <Link to='/requests'>
           <Item> Pedidos </Item>
-        </Link>
-      </Box>
-
-      <Title> Recursos</Title>
-      <Box>
-        <Icon>
-          <FaChartBar />
-        </Icon>
-        <Link to='/statistics'>
-        <Item> Estatísticas </Item>
         </Link>
       </Box>
 
@@ -86,6 +87,19 @@ export default function Sidebar() {
           <Item> Menssagens </Item>
         </Link>
       </Box>
+
+      
+      <Title> Recursos</Title>
+      <Box>
+        <Icon>
+          <FaChartBar />
+        </Icon>
+        <Link to='/statistics'>
+        <Item> Estatísticas </Item>
+        </Link>
+      </Box>
+
+    
 
     </Container>
   )

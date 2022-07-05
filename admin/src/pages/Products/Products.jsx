@@ -52,7 +52,7 @@ export default function Products() {
               <THeadTR>
                 <TH>Imagem</TH>
                 <TH>Produto</TH>
-                <TH>Produto</TH>
+                <TH>Descrição</TH>
                 <TH>Categoria</TH>
                 <TH>Tamanho</TH>
                 <TH>Editar</TH>

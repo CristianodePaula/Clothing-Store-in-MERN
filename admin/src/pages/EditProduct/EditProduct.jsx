@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useState } from "react"
 import {
   Container,
   Wrapper,
@@ -16,7 +16,6 @@ import Topbar from '../../components/Topbar/Topbar'
 import { updateProduct } from '../../redux/apiCalls'
 import { useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { userRequest } from "../../resources/requestMethods"
 import {
   getStorage,
   ref,
@@ -29,7 +28,6 @@ export default function EditProduct() {
 
   const location = useLocation();
   const productId = location.pathname.split("/")[2]
-  const [pStats, setPStats] = useState([])
 
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
@@ -39,48 +37,7 @@ export default function EditProduct() {
   const product = useSelector((state) =>
     state.product.products.find((product) => product._id === productId)
   )
-
-  const MONTHS = useMemo(
-    () => [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Agu",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    []
-  )
-
-  // read
-  useEffect(() => {
-    const getStats = async () => {
-      try {
-        const res = await userRequest.get("orders/income?pid=" + productId)
-        const list = res.data.sort((a, b) => {
-          return a._id - b._id
-        })
-        list.map((item) =>
-          setPStats((prev) => [
-            ...prev,
-            { name: MONTHS[item._id - 1], Sales: item.total },
-          ])
-        );
-      } catch (err) {
-        console.log(err)
-      }
-    }
-    getStats()
-  }, [productId, MONTHS])
-
-
-  // update
+  
   const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value }
@@ -103,13 +60,13 @@ export default function EditProduct() {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        console.log("Upload is " + progress + "% done")
+        console.log("Upload esta a " + progress + "% da conclusão")
         switch (snapshot.state) {
           case "paused":
-            console.log("Upload is paused")
+            console.log("Upload pausando")
             break;
           case "running":
-            console.log("Upload is running")
+            console.log("Upload enviando")
             break;
           default:
         }
@@ -118,8 +75,9 @@ export default function EditProduct() {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const product = { ...inputs, img: downloadURL, categories: cat }
+          const product = { ...inputs, img: downloadURL, categories: cat  }
           updateProduct(product, dispatch)
+          window.location.replace("/products")
         })
       }
     )
@@ -165,7 +123,7 @@ export default function EditProduct() {
             <Label>Categoria</Label>
             <Input
               type="text"
-              placeholder="jeans, skirts"
+              placeholder={product.categories}
               onChange={handleCat}
             />
             <Label>Disponível</Label>

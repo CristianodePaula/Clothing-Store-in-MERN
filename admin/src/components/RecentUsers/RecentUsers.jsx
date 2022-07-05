@@ -27,8 +27,8 @@ export default function RecenteUsers() {
   return (
     <Container>
       <Table>
-      <H1> Usuários recentes</H1>
         <TBody>
+         <H1> Usuários recentes</H1>
           {users.slice(0, 4).map((user) => {
             return (
               <TBodyTR key={user.id}>

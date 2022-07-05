@@ -53,9 +53,9 @@ export default function Home() {
   return (
 
     <Container>
-      <Sidebar />
+        <Sidebar />
       <Top>
-        <Topbar />
+      <Topbar />
         <Center>
           <Widgets />
           <Chart

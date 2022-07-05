@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+ import React, { useState } from 'react'
 import {
   Container,
   Wrapper,
@@ -9,10 +9,12 @@ import {
   Label,
   Input,
   Button
-} from './NewProductStyle'
+} from './NewCategorieStyle'
 import { FaPlus } from 'react-icons/fa'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Topbar from '../../components/Topbar/Topbar'
+import { addCategorie } from "../../redux/apiCalls"
+import { useDispatch } from "react-redux"
 import {
   getStorage,
   ref,
@@ -20,24 +22,17 @@ import {
   getDownloadURL,
 } from "firebase/storage"
 import app from "../../resources/Firebase"
-import { addProduct } from "../../redux/apiCalls"
-import { useDispatch } from "react-redux"
 
-export default function NewProduct() {
+export default function NewUser() {
 
   const [inputs, setInputs] = useState({})
   const [file, setFile] = useState(null)
-  const [cat, setCat] = useState([])
   const dispatch = useDispatch()
 
   const handleChange = (e) => {
     setInputs((prev) => {
       return { ...prev, [e.target.name]: e.target.value }
     })
-  }
-
-  const handleCat = (e) => {
-    setCat(e.target.value.split(","))
   }
 
   const handleClick = (e) => {
@@ -52,13 +47,13 @@ export default function NewProduct() {
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        console.log("Upload esta a " + progress + "% da conclusão")
+        console.log("Upload is " + progress + "% done")
         switch (snapshot.state) {
           case "paused":
-            console.log("Upload pausando")
+            console.log("Upload is paused")
             break;
           case "running":
-            console.log("Upload enviando")
+            console.log("Upload is running")
             break;
           default:
         }
@@ -67,9 +62,9 @@ export default function NewProduct() {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const product = { ...inputs, img: downloadURL, categories: cat }
-          addProduct(product, dispatch)
-          window.location.replace("/products")
+          const user = { ...inputs, img: downloadURL }
+          addCategorie(user, dispatch)
+         window.location.replace("/categories")
         })
       }
     )
@@ -80,48 +75,26 @@ export default function NewProduct() {
       <Sidebar />
       <Wrapper>
         <Topbar />
-        <Title>Novo Produto</Title>
+        <Title>Nova Categoria</Title>
         <CProduct>
           <Form>
             <Label htmlFor="file">
-              <FaPlus /> Adicione uma imagem
+              <FaPlus /> Imagem da Categoria
             </Label>
             <FileInput
               type="file"
-              id='file'
+              id="file"
               onChange={(e) => setFile(e.target.files[0])}
             />
-            <Label>Titulo</Label>
+            <Label>Nome</Label>
             <Input
-              name="title"
+              name="categorie"
               type="text"
+              placeholder="digite o nome"
               onChange={handleChange}
             />
-            <Label>Descrição</Label>
-            <Input
-               name="desc"
-               type="text"
-              onChange={handleChange}
-            />
-            <Label>Preço</Label>
-            <Input
-              name="price"
-              type="number"
-              onChange={handleChange}
-            />
-            <Label>Categorias</Label>
-            <Input 
-              type="text" 
-              placeholder="jeans, skirts" 
-              onChange={handleCat} 
-            />
-            <Label>Disponível</Label>
-            <select name="inStock" onChange={handleChange}>
-              <option value="true">Yes</option>
-              <option value="false">No</option>
-            </select>
           </Form>
-          <Button onClick={handleClick}> Registrar </Button>
+          <Button onClick={handleClick}> Iserir </Button>
         </CProduct>
       </Wrapper>
     </Container>

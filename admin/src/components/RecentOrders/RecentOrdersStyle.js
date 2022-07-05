@@ -1,4 +1,8 @@
 import styled, { keyframes } from 'styled-components'
+import {
+    mobile
+} from '../../resources/Responsive'
+//${mobile({})}
 
 export const scaleBox = keyframes`
     0% { 
@@ -12,7 +16,6 @@ export const scaleBox = keyframes`
 `
 
 export const Container = styled.div`
-    height: 240px;
     width: 550px;
     padding: 20px;
     box-shadow: 10px 10px 10px #909090;
@@ -22,17 +25,26 @@ export const Container = styled.div`
     &:hover {
         transform: scale(1.05)
     }
-    animation: ${ scaleBox } 2s ease-in-out;
+    animation: ${scaleBox} 2s ease-in-out;
+    ${mobile({
+    width: '330px',
+})}
 `
 export const Table = styled.table`
     width: 100%;
     border-collapse: collapse;
-    text-align: center;
     border-radius: 5px;
     overflow: hidden;
+    ${mobile({
+    width: '50%'
+})}
 `
 export const H1 = styled.p`
-  font-size: 18px;
+    font-size: 18px;
+    align-items: flex-start;
+    ${mobile({
+    fontSize: '10px'
+})}
 `
 export const THead = styled.thead`
     position: sticky;
@@ -55,6 +67,9 @@ export const TH = styled.th`
         width: 1%;
         white-space: nowrap;
     }
+    ${mobile({
+    fontSize: '10px'
+})}
 `
 export const TBody = styled.tbody``
 
@@ -65,4 +80,7 @@ export const TD = styled.td`
     padding: 10px;
     border: 1px solid grey;
     font-size: 14px;
+    ${mobile({
+    fontSize: '8px'
+})}
 `

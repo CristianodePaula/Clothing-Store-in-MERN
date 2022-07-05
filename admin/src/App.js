@@ -18,7 +18,8 @@ import EditProduct from './pages/EditProduct/EditProduct'
 import NewProduct from './pages/NewProduct/NewProduct'
 import NewUser from './pages/NewUser/NewUser'
 import Statistics from './pages/Statistics/Statistics'
-
+import Categories from './pages/Categories/Categories'
+import NewCategorie from './pages/NewCategorie/NewCategorie'
 
 function App() {
 
@@ -27,20 +28,22 @@ function App() {
   return ( 
     <BrowserRouter>
       <Routes>
-        <Route path = "/login" element={admin ? < Navigate to = '/' /> : <Login/>}/> 
-      {admin && ( 
+      <Route path = "/login" element={admin ? < Navigate to = '/' /> : <Login/>}/> 
+        {admin && ( 
         <>
           <Route path = "/" element = {<Home />}/>        
           <Route path = "/users" element = {<Users />}/>    
           <Route path = "/products" element = {<Products />}/>  
           <Route path = "/product/:productId" element = {< EditProduct />}/>  
           <Route path="/newproduct" element = {<NewProduct />}/>
+          <Route path="/newcategorie" element = {<NewCategorie />}/>
           <Route path="/newuser" element = {<NewUser />}/>  
           <Route path="/requests" element = {<Orders />}/> 
           <Route path ="/statistics" element={< Statistics />}/>
+          <Route path = "/categories" element={< Categories />}/>    
           <Route path = "/message" element={< Messages />}/>    
         </>
-      )} 
+        )} 
       </Routes>  
     </BrowserRouter>
   )
